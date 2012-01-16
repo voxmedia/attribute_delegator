@@ -11,6 +11,7 @@ module AttributeDelegator
 
       exists_method = :"ensure_#{the_delegate}_exists"
       define_method exists_method do
+        return if self.send(the_delegate)
         build_method = "build_#{the_delegate.to_s}"
         self.send(build_method.to_sym)
       end

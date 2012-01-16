@@ -14,7 +14,7 @@ end
 
 class TestAttributeDelegator < Test::Unit::TestCase
   def setup
-    @entry = Entry.create!(:title => "Entry Title", :body => "Body of entry")
+    @entry = Entry.create!(:title => "Entry Title")
   end
 
   def test_delegated_attributes_getters_and_setters

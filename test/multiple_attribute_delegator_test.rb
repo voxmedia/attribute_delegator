@@ -6,7 +6,7 @@ class Entry < ActiveRecord::Base
   delegates_attributes_to :entry_metadata, [:page_views]
 
   has_one :entry_photo
-  delegates_attributes_to :entry_photo, [:photo]
+  delegates_attributes_to :entry_photo, [:format, :photo]
 end
 
 class EntryMetadata < ActiveRecord::Base
@@ -21,16 +21,13 @@ end
 
 
 class TestMultipleAttributeDelegators < Test::Unit::TestCase
-  def setup
-    @entry = Entry.create!(:title => "Entry Title", :body => "Body of entry")
-  end
-
   def test_working_with_multiple_delegates
     page_views = 10
     photo = "ok pretend this string is a photo"
     e = Entry.create!({
       :page_views => page_views,
-      :photo => photo
+      :photo => photo,
+      :format => 'jpeg'
     })
     assert_equal photo, e.photo
     assert_equal photo, e.entry_photo.photo

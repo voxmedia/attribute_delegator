@@ -13,7 +13,6 @@ ActiveRecord::Base.establish_connection({
 ActiveRecord::Schema.define do
   create_table "entries", :force => true do |t|
     t.column "title",  :string
-    t.column "body",  :text
   end
 
   create_table "entry_metadata", :force => true do |t|
@@ -23,6 +22,7 @@ ActiveRecord::Schema.define do
 
   create_table "entry_photos", :force => true do |t|
     t.column "entry_id", :integer
-    t.column "photo",  :text
+    t.column "photo",  :text, :null => false
+    t.column "format", :string, :null => false
   end
 end
