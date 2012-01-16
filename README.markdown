@@ -25,17 +25,27 @@ This is how to setup AttributeDelegator
 
 And this is how you can use it
 
-  # You can use normal getter/setter methods
-  e1 = Entry.new(:title => 'entry title')
-  e1.page_views = 50
-  e1.save!
-  assert_equal e1.page_views, e1.entry_metadata.page_views
+    # You can use normal getter/setter methods
+    e1 = Entry.new(:title => 'entry title')
+    e1.page_views = 50
+    e1.save!
+    assert_equal e1.page_views, e1.entry_metadata.page_views
 
-  # You can also set the attributes upon creation
-  e2 = Entry.create!(:title => 'Another title', :page_views => 50)
-  assert_equal 50, e2.page_views
+    # You can also set the attributes upon creation
+    e2 = Entry.create!(:title => 'Another title', :page_views => 50)
+    assert_equal 50, e2.page_views
 
-  # Finally, you can use attributes=, like you would submitting a form
-  e3 = Entry.new
-  e3.attributes = { :title => 'a title', :page_views => 50}
-  assert_equal 50, e3.page_views
+    # Finally, you can use attributes=, like you would submitting a form
+    e3 = Entry.new
+    e3.attributes = { :title => 'a title', :page_views => 50}
+    assert_equal 50, e3.page_views
+
+## Why?
+
+This gem was created to prevent large, STI models from bloating unecceesarily
+when new fields needed to be added for certain subtypes, but not the
+base class. This interface is particularly useful when the attributes
+for that model are set by a form, because it means that the foreign
+attributes can be seamlessly set using attributes=, and the form can
+remain simple, even for attributes specific to one subtype.
+
