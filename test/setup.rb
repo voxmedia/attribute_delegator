@@ -6,7 +6,7 @@ require 'test/unit'
 
 ActiveRecord::Base.establish_connection({
   :adapter => 'sqlite3',
-  :database => 'attribute_delegator_test',
+  :database => 'test/attribute_delegator_test.db',
   :dbfile => 'test.db'
 })
 
