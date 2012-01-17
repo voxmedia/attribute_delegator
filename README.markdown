@@ -12,7 +12,7 @@ This is how to setup AttributeDelegator
 
     # Contains a 'title' field.
     class Entry < ActiveRecord::Base
-      include ::AttributeDelegator
+      include AttributeDelegator
       has_one :entry_metadata
       delegates_attributes_to :entry_metadata, [:page_views]
     end
